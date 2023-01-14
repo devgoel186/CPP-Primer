@@ -13,5 +13,6 @@ int main()
     */
 
     [[maybe_unused]] int a = 5;
+    cout << 2 * 3 << endl;
     return 0;
 }

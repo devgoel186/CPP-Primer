@@ -32,3 +32,21 @@
 - The number of operands that an operator takes as input is called the operator's **arity** (four types of arity - unary, binary, ternary, nullary(_the throw operator_))
 - Operators are executed in order **PEMDAS**.
 - All operators which define some behaviour (and not just return values) return their left operand.
+- Statement vs Expression - Statements are used when we want the program to perform an action. Expressions are used when we want the program to calculate a value.
+
+## Module 2 - Functions
+
+- main() is the only function that implicitly returns a value.
+- **forward declaration** - tell the compiler about the existence of a function before we define the function's body. For this, use function declaration(also called function prototype).
+- What would happen if you forward declare a function, but do not define it later on? - The compiler would function properly, and program compiles. However, the linker will complain that it cannot resolve the function call.
+- Declarations that are not definitions are called _pure declarations_.
+- Multiple files can be compiled together using the compiler with `g++ <file1> <file2> ... -o main`. While compiling, ensure that function declarations are made for each function used not in that particular file and sourced from someplace else.
+- The compilation can be in any order for multiple files. The linker is the one which connects the dots.
+- Compilation of two files with same function names can cause a naming collision, and thus cause the linker to return an error. For reference, see `name_coll1.cpp` and `name_coll2.cpp`, compiled with `gcc name_coll1.cpp name_coll2.cpp -o name_coll`.
+- Most naming collisions occur in two cases:
+  - Two (or more) identically named functions (or global variables) are introduced into separate files belonging to the same program. This will result in a linker error.
+  - Two (or more) identically named functions (or global variables) are introduced into the same file. This will result in a compiler error.
+- Solution for naming collisions? Namespaces. A region that allows to declare names inside of it for the purpose of disambiguation.
+- In C++, any name not defined inside a class, function or a namespace belongs to the global namespace (sometimes called global scope). Executable statements are not allowed in the global namespace.
+- The `::` in `std::cout` is the _scope resolution operator_.
+- The _`using` directive_ is used to access namespaces without giving a namespace prefix. However, it is discouraged.
