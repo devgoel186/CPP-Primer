@@ -42,7 +42,7 @@
 - Declarations that are not definitions are called _pure declarations_.
 - Multiple files can be compiled together using the compiler with `g++ <file1> <file2> ... -o main`. While compiling, ensure that function declarations are made for each function used not in that particular file and sourced from someplace else.
 - The compilation can be in any order for multiple files. The linker is the one which connects the dots.
-- Compilation of two files with same function names can cause a naming collision, and thus cause the linker to return an error. For reference, see `name_coll1.cpp` and `name_coll2.cpp`, compiled with `gcc name_coll1.cpp name_coll2.cpp -o name_coll`.
+- Compilation of two files with same function names can cause a naming collision, and thus cause the linker to return an error. For reference, see [name_coll1.cpp](./name_collisions/name_coll1.cpp) [name_coll2.cpp](./name_collisions/name_coll2.cpp), compiled with `gcc name_coll1.cpp name_coll2.cpp -o name_coll`.
 - Most naming collisions occur in two cases:
   - Two (or more) identically named functions (or global variables) are introduced into separate files belonging to the same program. This will result in a linker error.
   - Two (or more) identically named functions (or global variables) are introduced into the same file. This will result in a compiler error.
@@ -50,3 +50,18 @@
 - In C++, any name not defined inside a class, function or a namespace belongs to the global namespace (sometimes called global scope). Executable statements are not allowed in the global namespace.
 - The `::` in `std::cout` is the _scope resolution operator_.
 - The _`using` directive_ is used to access namespaces without giving a namespace prefix. However, it is discouraged.
+- [Translation phases](https://en.cppreference.com/w/cpp/language/translation_phases)
+- The most noteworthy phase of translation is preprocessing, which involves the preprocessor. It scans for all preprocessor directives(instructions beginning with `#`) and perform the particular action.
+- Types of preprocessor directives:
+  - `#include`
+  - `#define` - with and without substitution text
+  - `#ifdef`/`#if defined()`, `#endif`, `#ifndef`/`#if !defined()`, `#if 0` - conditional compilation preprocessor
+- Directives defined in one code file do not have impact on other code files in the same project.
+- Header files allow to put declarations in one location and import them when needed.
+- Header files consist of two parts:
+  - Header guard
+  - Actual content, which comprises of forward declarations for all the identifiers.
+- When using angled brackets, the compiler preprocessor searches in the `include directories`. With double quotes, it first looks in the current directory.
+- Duplicate function definitions can lead to compilation error, as there can be no duplicate definition in a file.
+- Header guards can be used to deal with duplicate function. For reference, see [header guards](./header/header_guard.cpp)
+- Modern compilers support a simpler, alternate form of header guards using the `#pragma` directive by using `#pragma once`. Still, prefer header guards as they are more reliable, and pragma is not officially a part of C++.
