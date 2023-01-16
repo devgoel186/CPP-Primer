@@ -65,3 +65,9 @@
 - Duplicate function definitions can lead to compilation error, as there can be no duplicate definition in a file.
 - Header guards can be used to deal with duplicate function. For reference, see [header guards](./header/header_guard.cpp)
 - Modern compilers support a simpler, alternate form of header guards using the `#pragma` directive by using `#pragma once`. Still, prefer header guards as they are more reliable, and pragma is not officially a part of C++.
+
+## Module 3 - Debugging C++ Programs
+
+- When printing info for debugging purposes, use `std::cerr` instead of `std::cout`, as `std::cerr` is unbuffered. This ensures all debug output appears as soon as possible.
+- We can enable/disable debugging using preprocessor directives (`ifdef ENABLE_DEBUG`, `endif`)
+- Another alternative is using a logger.
